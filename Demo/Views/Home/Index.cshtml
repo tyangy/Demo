@@ -1,14 +1,396 @@
 ﻿﻿@{    ViewData["Title"] = "VibeCoding - 现代编程学习平台";}
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+    
+    .hero {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmZmZmMTAiPjwvcmVjdD4KPHBhdGggZD0iTTAgNUw1IDBaTTYgNEw0IDZaTS0xIDFMMSAtMVoiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIj48L3BhdGg+Cjwvc3ZnPg==');
+        opacity: 0.1;
+    }
+    
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        color: #1f2937;
+    }
+    
+    .display-4 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+    }
+    
+    .display-3 {
+        font-size: 2.75rem;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+    }
+    
+    .lead {
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .card {
+        transition: all 0.3s ease;
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+    
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn {
+        transition: all 0.3s ease;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+    }
+    
+    .btn-light {
+        background-color: white;
+        color: #4f46e5;
+    }
+    
+    .btn-light:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-lg {
+        padding: 1rem 2rem;
+        font-size: 1.125rem;
+    }
+    
+    .rounded-full {
+        border-radius: 9999px;
+    }
+    
+    .shadow-lg {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .bg-gradient-to-r {
+        background-image: linear-gradient(to right, var(--tw-gradient-stops));
+    }
+    
+    .from-blue-600 {
+        --tw-gradient-from: #2563eb;
+    }
+    
+    .to-purple-600 {
+        --tw-gradient-to: #7c3aed;
+    }
+    
+    .bg-gradient-to-br {
+        background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+    }
+    
+    .text-gray-800 {
+        color: #1f2937;
+    }
+    
+    .text-gray-600 {
+        color: #4b5563;
+    }
+    
+    .text-gray-400 {
+        color: #9ca3af;
+    }
+    
+    .bg-white {
+        background-color: #ffffff;
+    }
+    
+    .bg-gray-50 {
+        background-color: #f9fafb;
+    }
+    
+    .bg-gray-900 {
+        background-color: #111827;
+    }
+    
+    .py-16 {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    
+    .py-12 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    
+    .mb-12 {
+        margin-bottom: 3rem;
+    }
+    
+    .mb-8 {
+        margin-bottom: 2rem;
+    }
+    
+    .mb-6 {
+        margin-bottom: 1.5rem;
+    }
+    
+    .mb-4 {
+        margin-bottom: 1rem;
+    }
+    
+    .mb-3 {
+        margin-bottom: 0.75rem;
+    }
+    
+    .mb-2 {
+        margin-bottom: 0.5rem;
+    }
+    
+    .mt-4 {
+        margin-top: 1rem;
+    }
+    
+    .mt-8 {
+        margin-top: 2rem;
+    }
+    
+    .pt-8 {
+        padding-top: 2rem;
+    }
+    
+    .max-w-3xl {
+        max-width: 48rem;
+    }
+    
+    .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .text-center {
+        text-align: center;
+    }
+    
+    .flex {
+        display: flex;
+    }
+    
+    .items-center {
+        align-items: center;
+    }
+    
+    .justify-center {
+        justify-content: center;
+    }
+    
+    .space-x-4 {
+        gap: 1rem;
+    }
+    
+    .space-y-3 {
+        gap: 0.75rem;
+    }
+    
+    .space-y-2 {
+        gap: 0.5rem;
+    }
+    
+    .p-6 {
+        padding: 1.5rem;
+    }
+    
+    .w-16 {
+        width: 4rem;
+    }
+    
+    .h-16 {
+        height: 4rem;
+    }
+    
+    .w-20 {
+        width: 5rem;
+    }
+    
+    .h-20 {
+        height: 5rem;
+    }
+    
+    .text-2xl {
+        font-size: 1.5rem;
+    }
+    
+    .text-3xl {
+        font-size: 1.875rem;
+    }
+    
+    .text-xl {
+        font-size: 1.25rem;
+    }
+    
+    .text-green-500 {
+        color: #10b981;
+    }
+    
+    .text-blue-600 {
+        color: #2563eb;
+    }
+    
+    .text-purple-600 {
+        color: #7c3aed;
+    }
+    
+    .text-green-600 {
+        color: #059669;
+    }
+    
+    .bg-blue-100 {
+        background-color: #dbeafe;
+    }
+    
+    .bg-purple-100 {
+        background-color: #f3e8ff;
+    }
+    
+    .bg-green-100 {
+        background-color: #d1fae5;
+    }
+    
+    .border-0 {
+        border: 0;
+    }
+    
+    .border-t {
+        border-top: 1px solid;
+    }
+    
+    .border-gray-800 {
+        border-color: #1f2937;
+    }
+    
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .rounded-lg {
+        border-radius: 0.5rem;
+    }
+    
+    .list-unstyled {
+        list-style: none;
+    }
+    
+    .hover:text-white:hover {
+        color: white;
+    }
+    
+    .hover:text-blue-400:hover {
+        color: #60a5fa;
+    }
+    
+    .hover:underline:hover {
+        text-decoration: underline;
+    }
+    
+    /* 动画效果 */
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    .delay-100 {
+        animation-delay: 0.1s;
+    }
+    
+    .delay-200 {
+        animation-delay: 0.2s;
+    }
+    
+    .delay-300 {
+        animation-delay: 0.3s;
+    }
+    
+    .delay-400 {
+        animation-delay: 0.4s;
+    }
+    
+    .delay-500 {
+        animation-delay: 0.5s;
+    }
+    
+    /* 响应式设计 */
+    @@media (max-width: 768px) {
+        .display-4 {
+            font-size: 2.5rem;
+        }
+        
+        .display-3 {
+            font-size: 2rem;
+        }
+        
+        .py-16 {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+        
+        .mb-12 {
+            margin-bottom: 2rem;
+        }
+    }
+</style>
+
 <section class="hero bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6">
+            <div class="col-md-6 fade-in-up">
                 <h1 class="display-4 font-bold mb-4">VibeCoding</h1>
                 <p class="lead mb-6">打造沉浸式编程学习体验，让代码在指尖舞动</p>
                 <a href="#features" class="btn btn-light btn-lg">了解更多</a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 fade-in-up delay-200">
                 <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20coding%20platform%20interface%20with%20code%20editor%20and%20learning%20dashboard&image_size=landscape_16_9" alt="VibeCoding平台" class="img-fluid rounded-lg shadow-lg">
             </div>
         </div>
@@ -17,12 +399,12 @@
 
 <section id="features" class="py-16 bg-white">
     <div class="container">
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 fade-in-up">
             <h2 class="display-3 font-bold text-gray-800">核心功能</h2>
             <p class="text-gray-600 max-w-3xl mx-auto">VibeCoding提供全方位的编程学习体验，从基础到高级，满足不同阶段学习者的需求</p>
         </div>
         <div class="row">
-            <div class="col-md-4 mb-8">
+            <div class="col-md-4 mb-8 fade-in-up delay-100">
                 <div class="card border-0 shadow-lg rounded-lg overflow-hidden">
                     <div class="p-6">
                         <div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mb-4">
@@ -33,7 +415,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-8">
+            <div class="col-md-4 mb-8 fade-in-up delay-200">
                 <div class="card border-0 shadow-lg rounded-lg overflow-hidden">
                     <div class="p-6">
                         <div class="bg-purple-100 text-purple-600 rounded-full w-16 h-16 flex items-center justify-center mb-4">
@@ -44,7 +426,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-8">
+            <div class="col-md-4 mb-8 fade-in-up delay-300">
                 <div class="card border-0 shadow-lg rounded-lg overflow-hidden">
                     <div class="p-6">
                         <div class="bg-green-100 text-green-600 rounded-full w-16 h-16 flex items-center justify-center mb-4">
@@ -62,10 +444,10 @@
 <section class="py-16 bg-gray-50">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6 mb-8 mb-md-0">
+            <div class="col-md-6 mb-8 mb-md-0 fade-in-up">
                 <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20technology%20stack%20visualization%20with%20programming%20languages%20and%20frameworks&image_size=landscape_16_9" alt="技术栈" class="img-fluid rounded-lg shadow-lg">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 fade-in-up delay-200">
                 <h2 class="display-3 font-bold text-gray-800 mb-4">技术栈</h2>
                 <ul class="list-unstyled space-y-3">
                     <li class="flex items-center">
@@ -92,11 +474,11 @@
 
 <section class="py-16 bg-white">
     <div class="container">
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 fade-in-up">
             <h2 class="display-3 font-bold text-gray-800">为什么选择VibeCoding</h2>
         </div>
         <div class="row">
-            <div class="col-md-3 mb-8">
+            <div class="col-md-3 mb-8 fade-in-up delay-100">
                 <div class="text-center">
                     <div class="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-lightbulb text-3xl"></i>
@@ -105,7 +487,7 @@
                     <p class="text-gray-600">结合游戏化元素，让学习过程更加有趣</p>
                 </div>
             </div>
-            <div class="col-md-3 mb-8">
+            <div class="col-md-3 mb-8 fade-in-up delay-200">
                 <div class="text-center">
                     <div class="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-laptop-code text-3xl"></i>
@@ -114,7 +496,7 @@
                     <p class="text-gray-600">通过实际项目练习，巩固所学知识</p>
                 </div>
             </div>
-            <div class="col-md-3 mb-8">
+            <div class="col-md-3 mb-8 fade-in-up delay-300">
                 <div class="text-center">
                     <div class="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-chart-line text-3xl"></i>
@@ -123,7 +505,7 @@
                     <p class="text-gray-600">实时监控学习进度，提供个性化建议</p>
                 </div>
             </div>
-            <div class="col-md-3 mb-8">
+            <div class="col-md-3 mb-8 fade-in-up delay-400">
                 <div class="text-center">
                     <div class="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-headset text-3xl"></i>
@@ -138,13 +520,13 @@
 
 <section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
     <div class="container">
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 fade-in-up">
             <h2 class="display-3 font-bold">开始您的编程之旅</h2>
             <p class="lead max-w-3xl mx-auto">加入VibeCoding，开启您的编程学习新体验</p>
         </div>
-        <div class="text-center">
+        <div class="text-center fade-in-up delay-200">
             <a href="#" class="btn btn-light btn-lg px-8 py-3 rounded-full font-bold">立即注册</a>
-            <p class="mt-4">已有账号？<a href="#" class="text-white underline">登录</a></p>
+            <p class="mt-4">已有账号？<a href="#" class="text-white hover:underline">登录</a></p>
         </div>
     </div>
 </section>
@@ -152,11 +534,11 @@
 <footer class="bg-gray-900 text-white py-12">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 mb-8">
+            <div class="col-md-4 mb-8 fade-in-up">
                 <h3 class="text-xl font-bold mb-4">VibeCoding</h3>
                 <p class="text-gray-400">打造沉浸式编程学习体验，让代码在指尖舞动</p>
             </div>
-            <div class="col-md-4 mb-8">
+            <div class="col-md-4 mb-8 fade-in-up delay-100">
                 <h3 class="text-xl font-bold mb-4">快速链接</h3>
                 <ul class="list-unstyled space-y-2">
                     <li><a href="#" class="text-gray-400 hover:text-white">首页</a></li>
@@ -165,7 +547,7 @@
                     <li><a href="#" class="text-gray-400 hover:text-white">关于我们</a></li>
                 </ul>
             </div>
-            <div class="col-md-4 mb-8">
+            <div class="col-md-4 mb-8 fade-in-up delay-200">
                 <h3 class="text-xl font-bold mb-4">联系我们</h3>
                 <ul class="list-unstyled space-y-2">
                     <li class="flex items-center">
@@ -185,29 +567,8 @@
                 </div>
             </div>
         </div>
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center fade-in-up delay-300">
             <p>&copy; 2026 VibeCoding. All rights reserved.</p>
         </div>
     </div>
 </footer>
-
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    .hero {
-        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-    }
-    
-    .card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
