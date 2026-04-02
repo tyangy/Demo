@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Serilog;
 using System;
 using System.Threading.Tasks;
 
@@ -46,9 +47,22 @@ namespace Demo
             #endregion
 
             #region 日志
-            builder.Logging.ClearProviders();
-            builder.Logging.AddConsole();
-            builder.Logging.AddDebug();
+            // 配置 Serilog
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .Enrich.WithProperty("Application", builder.Configuration.GetValue("Application", "DemoService"))
+                .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
+                .Enrich.WithMachineName()
+                .Enrich.WithThreadId()
+                .Enrich.FromLogContext()
+                .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {TraceId} {SpanId} {Message:lj}{NewLine}{Exception}")
+                .WriteTo.File(
+                    path: "logs/log-.txt",
+                    rollingInterval: RollingInterval.Day,
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {TraceId} {SpanId} {Message:lj}{NewLine}{Exception}")
+                .CreateLogger();
+
+            builder.Host.UseSerilog();
             #endregion
 
             #region 配置
